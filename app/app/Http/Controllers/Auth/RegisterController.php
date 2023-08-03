@@ -74,7 +74,6 @@ class RegisterController extends Controller
 
     public function confirm(Request $request)
     {
-        // バリデーション済みのデータを取得
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -86,14 +85,14 @@ class RegisterController extends Controller
 
     public function registerComplete(Request $request)
     {
-        // ユーザー情報を保存する処理を追加
+      
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
         $user->save();
 
-        // 新規登録完了画面にユーザー情報を渡して遷移
+        
         return view('auth.register_completed', ['data' => $request->all()]);
     }
 }

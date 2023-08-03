@@ -1,4 +1,3 @@
-<!-- resources/views/auth/register_completed.blade.php -->
 
 <!DOCTYPE html>
 <html lang="ja">

@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新規登録</title>
-    <!-- ここにCSSファイルのリンクを追加する場合は記述 -->
+    
     <style>
-        /* 画面中央にロゴを表示するスタイル */
+        
         body {
             display: flex;
             justify-content: center;

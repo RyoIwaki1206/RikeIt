@@ -20,8 +20,6 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = Auth::user();
-        // プロフィール情報を取得するロジックを記述
-        // 例えば、以下のようにデータを取得してビューに渡す
         $profile_image = $user->profile_image;
         $name = $user->name;
         $user_id = $user->user_id;
@@ -31,10 +29,10 @@ class ProfileController extends Controller
 
     public function save(Request $request)
     {
-        // バリデーションを行う（必要に応じて）
+       
         $request->validate([
             'name' => 'required|string|max:255',
-            // 他のフィールドに対するバリデーションルールを記述
+            
         ]);
 
         // ユーザーの情報を取得

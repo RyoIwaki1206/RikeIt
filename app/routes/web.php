@@ -6,11 +6,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('/login', 'Auth\LoginController@login'); // ログインフォームの送信先はPOSTメソッドで
+Route::post('/login', 'Auth\LoginController@login'); 
 
 // 新規登録ルート
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('/register', 'Auth\RegisterController@register'); // 新規登録フォームの送信先はPOSTメソッドで
+Route::post('/register', 'Auth\RegisterController@register'); 
 
 // パスワードリセットのルート
 Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -20,7 +20,7 @@ Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('pass
 
 // 入力内容確認ページのルート
 Route::get('/confirm', function () {
-    return redirect()->route('register'); // GETリクエストの場合はリダイレクト
+    return redirect()->route('register'); 
 });
 Route::post('/confirm', 'Auth\RegisterController@confirm')->name('confirm');
 
