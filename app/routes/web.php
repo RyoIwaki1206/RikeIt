@@ -39,3 +39,9 @@ Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 
 Route::post('/profile/save', 'ProfileController@save')->name('profile.save');
+
+
+Route::get('/thread_request/create', 'ThreadRequestController@create')->name('thread_request.create');
+
+Route::post('/thread_request', 'ThreadRequestController@store')->name('thread_request.store');
+
