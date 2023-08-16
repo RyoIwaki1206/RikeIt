@@ -1,0 +1,57 @@
+/* body のスタイル */
+body {
+    background-color: #1a1a1a; /* 濃いグレーの背景色 */
+    color: white; /* 白色の文字色 */
+    font-family: Arial, sans-serif; /* フォント指定（例としてArial） */
+}
+
+/* ヘッダーのスタイル */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333; /* ヘッダーの背景色（濃いグレー） */
+    padding: 10px 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left a {
+    color: #fff; /* 左側のリンク（RikeIt）の文字色 */
+    font-size: 24px; /* 左側のリンク（RikeIt）のフォントサイズ */
+    text-decoration: none;
+}
+
+.header-right a {
+    color: #fff; /* 右側のリンク（名前とログアウト）の文字色 */
+    margin-left: 20px; /* リンク間の余白 */
+    text-decoration: none;
+}
+
+/* フッターのスタイル */
+.footer-container {
+    display: flex;
+    justify-content: center;
+    background-color: #333; /* フッターの背景色（濃いグレー） */
+    padding: 10px 20px;
+}
+
+.new-post a,
+.new-thread-request a {
+    color: #fff; /* リンクの文字色 */
+    font-size: 18px; /* リンクのフォントサイズ */
+    text-decoration: none;
+    background-color: #666; /* ボタンの背景色（濃いグレー） */
+    padding: 10px 20px; /* ボタンの余白 */
+    border-radius: 5px; /* ボタンの角を丸くする */
+    margin: 5px; /* ボタン間の余白 */
+}
+
+
+
+
+
+

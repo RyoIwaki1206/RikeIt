@@ -1,4 +1,8 @@
-@include('header')
+@extends('layout')
+
+@section('title', 'ページのタイトル')
+
+@section('content')
 
 <!DOCTYPE html>
 <html>
@@ -14,19 +18,32 @@
     </div>
 
     <h2>投稿一覧</h2>
-    <ul>
-        @foreach($posts as $post)
-            <li>{{ $post->content }}</li>
-        @endforeach
-    </ul>
+@foreach ($posts as $post)
+    <div class="post">
+        <p>{{ $post->content }}</p>
+        @if ($post->image)
+            <div class="image-container">
+                <img src="{{ asset('storage/' . $post->image->path) }}" alt="投稿画像" width="200">
+            </div>
+        @endif
+    </div>
+@endforeach
 
-    <h2>いいね一覧</h2>
-    <ul>
-        @foreach($likes as $like)
-            <li>{{ $like->post->content }}</li>
+    <div class="container">
+        <h2>いいね一覧</h2>
+        @foreach ($user->likedPostsWithImages as $post)
+            <div class="post">
+                <p>{{ $post->content }}</p>
+                @if ($post->image)
+                    <div class="image-container">
+                        <img src="{{ asset('storage/' . $post->image->path) }}" alt="投稿画像" width="200">
+                    </div>
+                @endif
+            </div>
         @endforeach
-    </ul>
+    </div>
 </body>
 </html>
+@endsection
+        
 
-@include('footer')

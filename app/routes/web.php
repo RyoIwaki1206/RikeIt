@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\PostController;
 
 
 Route::get('/', function () {
@@ -25,10 +27,14 @@ Route::get('/confirm', function () {
 Route::post('/confirm', 'Auth\RegisterController@confirm')->name('confirm');
 
 // 新規登録完了画面のルート
-Route::get('/register_complete', 'Auth\RegisterController@registerComplete')->name('register_complete');
+Route::post('/register_complete', 'Auth\RegisterController@registerComplete')->name('register_complete');
+
+
 
 // ログイン後のトップページのルート
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+});
 
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
@@ -41,7 +47,26 @@ Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 Route::post('/profile/save', 'ProfileController@save')->name('profile.save');
 
 
-Route::get('/thread_request/create', 'ThreadRequestController@create')->name('thread_request.create');
+Route::get('/new_post', 'PostController@create')->name('new_post');
 
-Route::post('/thread_request', 'ThreadRequestController@store')->name('thread_request.store');
+Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+Route::post('/post', [PostController::class, 'store'])->name('post.store');
 
+
+Route::get('/create_thread', 'ThreadController@create')->name('create_thread');
+
+Route::post('/threads', [ThreadController::class, 'store'])->name('threads.store');
+
+Route::get('/threads/{thread}', [ThreadController::class, 'show'])->name('threads.show');
+
+Route::get('/home', [ThreadController::class, 'index'])->name('home');
+
+Route::post('/like/{postId}', 'PostController@toggleLike')->name('like.toggle');
+
+Route::group(['middleware' => 'auth'], function () {
+Route::get('/admin', 'AdminController@index')->name('admin.index');
+Route::get('/admin/search', 'AdminController@search')->name('admin.search');
+Route::get('/admin/user/{id}', 'AdminController@userProfile')->name('admin.userProfile');
+Route::delete('/admin/user/{id}', 'AdminController@deleteUser')->name('admin.deleteUser');
+
+});

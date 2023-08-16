@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'admin'
     ];
 
     /**
@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+    public function likedPosts()
+{
+    return $this->belongsToMany(Post::class, 'likes');
+}
+
+public function likedPostsWithImages()
+{
+    return $this->likedPosts()->with('image');
+}
+
 }

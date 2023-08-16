@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIkeIt</title>
-</head>
-<body>
-    <header>
-        <a href="{{ route('home') }}">RIkeIt</a>
-        <div>
+<div class="header">
+    <div class="header-left">
+        <a href="{{ route('home') }}">RikeIt</a>
+    </div>
+    <div class="header-right">
+        @if (Auth::check())
             <a href="{{ route('profile') }}">{{ Auth::user()->name }}</a>
-            <form action="{{ route('logout') }}" method="POST">
+            <a href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();">
+                ログアウト
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
-                <button type="submit">ログアウト</button>
             </form>
-        </div>
-    </header>
+        @endif
+    </div>
+</div>
+
 

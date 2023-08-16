@@ -7,6 +7,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Thread;
+
 class LoginController extends Controller
 {
     /*
@@ -41,7 +43,11 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
 {
-    return view ('home');
+    if ($user->admin === 1) {
+        return redirect()->route('admin.index'); // 管理者の場合は index.blade.php にリダイレクト
+    } else {
+        return redirect()->route('home'); // 一般ユーザーの場合は home.blade.php にリダイレクト
+    }
 }
 protected function loggedOut()
     {

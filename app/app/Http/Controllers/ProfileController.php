@@ -4,19 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; 
+use App\Models\User;
 
 
 class ProfileController extends Controller
 {
-    public function show ()
+    public function show()
     {
-        $user = Auth::user();
-        $posts = $user->posts()->latest()->get();
-        $likes = $user->likes()->with('post')->get();
+        $user = auth()->user(); // ログインユーザーを取得
 
-        return view('profile', compact('posts', 'likes'));
+        // ユーザーの投稿といいねを取得
+        $posts = $user->posts()->with('image')->get();
+        $likedPosts = $user->likedPosts;
+
+        return view('profile', compact('user', 'posts', 'likedPosts'));
     }
-
     public function edit()
     {
         $user = Auth::user();

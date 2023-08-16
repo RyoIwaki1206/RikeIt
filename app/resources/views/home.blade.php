@@ -1,22 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home</title>
-</head>
-<body>
-@include('header')
-    <h1>ようこそ、{{ Auth::user()->name }}さん！</h1>
-    <p>ログインに成功しました。</p>
-    <a href="{{ route('logout') }}"
-       onclick="event.preventDefault();
-                     document.getElementById('logout-form').submit();">
-        ログアウト
-    </a>
+@extends('layout')
 
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
-    @include('footer')
-</body>
-</html>
+@section('title', 'スレッド一覧')
+
+@section('content')
+    <h1>スレッド一覧</h1>
+
+    <ul>
+    @if(isset($threads))
+            @foreach ($threads as $thread)
+                <li><a href="{{ route('threads.show', ['thread' => $thread->id]) }}">{{ $thread->title }}</a></li>
+            @endforeach
+        @endif
+    </ul>
+@endsection
+
+
 

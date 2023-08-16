@@ -1,4 +1,8 @@
-@include('header')
+@extends('layout')
+
+@section('title', 'ページのタイトル')
+
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,4 +30,4 @@
 </body>
 </html>
 
-@include('footer')
+@endsection
